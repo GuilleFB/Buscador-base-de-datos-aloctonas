@@ -6,15 +6,23 @@
 rm(list=ls(all=TRUE)) # Borrar todo los objetos
 invisible(capture.output(gc())) # Limpiar la memoria
 
-# Cargar Paquetes
-if (!require(stringi)) install.packages('stringi'); library(stringi)
-if (!require(mapview)) install.packages('mapview'); library(mapview)
-if (!require(stringr)) install.packages('stringr'); library(stringr)
-if (!require(rgdal)) install.packages('rgdal'); library(rgdal)
-if (!require(sf)) install.packages('sf'); library(sf)
-if (!require(ggplot2)) install.packages('ggplot2'); library(ggplot2)
-if (!require(ggspatial)) install.packages('ggspatial'); library(ggspatial)
-if (!require(RColorBrewer)) install.packages('RColorBrewer'); library(RColorBrewer)
+# Instalacion y carga de paquetes de R en bucle
+
+paquetes=c("stringi",
+           "mapview",
+           "stringr",
+           "rgdal",
+           "sf",
+           "ggplot2",
+           "RColorBrewer",
+           
+)
+
+for (i in 1:length(paquetes)) {
+  if (!require(paquetes[i], character.only = TRUE)) install.packages(paquetes[i], character.only = TRUE) 
+  library(paquetes[i], character.only = TRUE)
+}
+
 
 Archivo=file.choose()
 BD_EAI=read.csv2(Archivo,sep = ";", dec = ",")
