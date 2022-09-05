@@ -32,7 +32,9 @@ load("mapas_obj.RData")
 
 # Funciones a usar ####
 Buscar_Especie = function(x){
-  temp=which(str_detect(BD_EAI$scientificname,regex(as.character(x), ignore_case=T))|str_detect(BD_EAI$Specie,regex(as.character(x), ignore_case=T)))
+  temp=which(str_detect(BD_EAI$scientificname,regex(as.character(x), ignore_case=T))|
+               str_detect(BD_EAI$Specie,regex(as.character(x), ignore_case=T))|
+    str_detect(BD_EAI$valid_name,regex(as.character(x), ignore_case=T)))
   temp2<<-BD_EAI[temp,]
 }
 
